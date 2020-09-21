@@ -1,0 +1,56 @@
+.widget {
+  border: 1px solid #000;
+  padding: 10px 15px;
+
+  max-width: 350px;
+}
+
+.widget-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #cecece;
+  margin-bottom: 15px;
+}
+
+.widget-title {
+  font-size: 26px;
+}
+
+.widget-markets {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.widget-filters {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.widget-search {
+  flex-basis: 50%;
+}
+
+.widget-filters-type {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  flex-basis: 50%;
+}
+
+.widget-pair-list {
+  max-height: 250px;
+}
+
+
+.filter {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.filter-input {
+  margin-right: 6px;
+}
