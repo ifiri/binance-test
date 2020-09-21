@@ -16,41 +16,8 @@
 }
 
 .widget-markets {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.widget-filters {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.widget-search {
-  flex-basis: 50%;
-}
-
-.widget-filters-type {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
-  flex-basis: 50%;
-}
-
 .widget-pair-list {
-  max-height: 250px;
-}
-
-
-.filter {
-  display: flex;
-  align-items: center;
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
-}
-
-.filter-input {
-  margin-right: 6px;
 }

@@ -1,0 +1,16 @@
+.widget-pairs-table {
+  &-filters {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  &-search {
+    flex-basis: 50%;
+  }
+
+  &-modes {
+    display: flex;
+    align-items: center;
+  }
+}
+

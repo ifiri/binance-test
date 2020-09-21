@@ -1,7 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { Table } from 'antd';
+import WidgetPairsSwitcher from './modules/WidgetPairsSwitcher';
+import WidgetPairsTable from './modules/WidgetPairsTable';
+
 import styles from './Widget.module.scss';
 
 const dataSource = [
@@ -91,7 +93,6 @@ const columns = [
   },
 ];
 
-
 export default function Widget(props) {
   const className = classnames({
     [props.className]: !!props.className,
@@ -106,24 +107,18 @@ export default function Widget(props) {
           Market
         </h3>
       </header>
-      <div className={ styles['widget-markets'] }>
-        <button>Market</button>
-        <button>BNB</button>
-        <button>BTC</button>
-        <button>ALTS</button>
-        <button>USD(S)</button>
-      </div>
-      <div className={ styles['widget-filters'] }>
-        <div className={ styles['widget-search'] }>
-          <input type="text" placeholder="search" />
-        </div>
-        <div className={ styles['widget-filters-type'] }>
-          <label className={ styles.filter }><input className={ styles['filter-input'] } type="radio" /> Change</label>
-          <label className={ styles.filter }><input className={ styles['filter-input'] } type="radio" /> Volume</label>
-        </div>
-      </div>
-      <div className={ styles['widget-pair-list'] }>
-        <Table dataSource={dataSource} columns={columns} size="small" pagination={ false } scroll={{ y: 240 }}/>
+
+      <WidgetPairsSwitcher
+        className={ styles['widget-markets'] }
+      />
+
+      <div >
+        <WidgetPairsTable
+          className={ styles['widget-pair-list'] }
+          pagination={ false }
+          scroll={{ y: 240 }}
+          size="small"
+        />
       </div>
     </section>
   );
