@@ -5,6 +5,21 @@ import { Table } from 'antd';
 
 import styles from './WidgetPairsTable.module.scss';
 
+const COLUMNS = [
+  {
+    title: 'Pair',
+    dataIndex: 'pair',
+    key: 'pair',
+    // sorter: (a, b) => a.pair.localeCompare(b.pair),
+  },
+  {
+    title: 'Last Price',
+    dataIndex: 'lastPrice',
+    key: 'last-price',
+    // sorter: (a, b) => a.lastPrice - b.lastPrice,
+  },
+];
+
 export default function WidgetPairsTable(props) {
   const { className: passedClassName, ...forwardingProps } = props;
 
@@ -36,12 +51,17 @@ export default function WidgetPairsTable(props) {
               type="radio"
               value="volume"
               name="mode"
-            /> Volume
+            />
+            Volume
           </label>
         </div>
       </div>
 
-      <Table {...forwardingProps } />
+      <Table
+        columns={ COLUMNS }
+        sortDirections={['descend', 'ascend', 'descend']}
+        {...forwardingProps }
+      />
     </section>
   );
 };

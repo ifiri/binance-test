@@ -4,5 +4,6 @@ import slices from './slices';
 export default configureStore({
   reducer: {
     connect: slices.connect,
+    products: slices.products,
   },
 });

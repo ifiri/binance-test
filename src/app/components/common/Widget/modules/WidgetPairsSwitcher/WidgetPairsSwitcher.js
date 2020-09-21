@@ -7,18 +7,16 @@ import {
   selectPair,
 } from 'app/store/slices/connect';
 
-// import store from 'app/stores';
-
 import Switcher from 'app/components/common/Switcher';
 
 import styles from './WidgetPairsSwitcher.module.scss';
 
 const AVAILABLE_MODES = [
-  { text: 'Margin', value: 'margin', key: 'margin' },
-  { text: 'BNB', value: 'bnb', key: 'bnb' },
-  { text: 'BTC', value: 'btc', key: 'btc' },
-  { text: 'ALTS', value: 'alts', key: 'alts' },
-  { text: 'USD(s)', value: 'usds', key: 'usds' },
+  { text: 'Margin', value: 'margin' },
+  { text: 'BNB', value: 'bnb' },
+  { text: 'BTC', value: 'btc' },
+  { text: 'ALTS', value: 'alts' },
+  { text: 'USD(s)', value: 'usds' },
 ];
 
 export default function WidgetPairsSwitcher(props) {
@@ -33,12 +31,7 @@ export default function WidgetPairsSwitcher(props) {
   const currentPair = useSelector(selectPair);
   const dispatch = useDispatch();
 
-  console.log('::: currentPair', currentPair);
-
-  const onSwitch = pair => {
-    console.log(':: sw', pair);
-    return dispatch(changePair(pair));
-  };
+  const onSwitch = pair => dispatch(changePair(pair));
 
   return <Switcher
     className={ className }
