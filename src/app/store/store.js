@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reducers from './reducers';
+import slices from './slices';
 
 export default configureStore({
   reducer: {
-    connect: reducers.connect,
+    connect: slices.connect,
   },
 });
