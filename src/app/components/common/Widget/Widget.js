@@ -27,14 +27,12 @@ export default function Widget(props) {
   const isLoading = useSelector(selectLoadingState);
 
   useEffect(() => {
-    if (areProductsExists) {
+    if (areProductsExists || isLoading) {
       return;
     }
 
     dispatch(fetchProducts());
   });
-
-  console.log('::: products', products);
 
   return (
     <section className={ className }>
@@ -50,12 +48,11 @@ export default function Widget(props) {
 
       <div >
         <WidgetPairsTable
-          dataSource={ products }
+          data={ products }
           className={ styles['widget-pair-list'] }
-          pagination={ false }
-          scroll={{ y: 240 }}
           loading={ isLoading }
-          size="small"
+          virtualized= { true }
+          shouldUpdateScroll= { false }
         />
       </div>
     </section>

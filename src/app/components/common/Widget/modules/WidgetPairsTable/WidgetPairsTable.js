@@ -1,24 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { Table } from 'antd';
+import { Table } from 'rsuite';
 
 import styles from './WidgetPairsTable.module.scss';
-
-const COLUMNS = [
-  {
-    title: 'Pair',
-    dataIndex: 'pair',
-    key: 'pair',
-    // sorter: (a, b) => a.pair.localeCompare(b.pair),
-  },
-  {
-    title: 'Last Price',
-    dataIndex: 'lastPrice',
-    key: 'last-price',
-    // sorter: (a, b) => a.lastPrice - b.lastPrice,
-  },
-];
 
 export default function WidgetPairsTable(props) {
   const { className: passedClassName, ...forwardingProps } = props;
@@ -35,33 +20,27 @@ export default function WidgetPairsTable(props) {
         <div className={ styles['widget-pairs-table-search'] }>
           <input type="text" placeholder="search" />
         </div>
-        
-        <div className={ styles['widget-pairs-table-modes'] }>
-          <label>
-            <input
-              type="radio"
-              value="change"
-              name="mode"
-              selected={ true }
-            />
-            Change
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="volume"
-              name="mode"
-            />
-            Volume
-          </label>
-        </div>
       </div>
 
       <Table
-        columns={ COLUMNS }
-        sortDirections={['descend', 'ascend', 'descend']}
+        className={ styles['widget-pairs-table-table'] }
+        data={props.data}
+        // sortColumn={this.state.sortColumn}
+        // sortType={this.state.sortType}
+        // onSortColumn={this.handleSortColumn}
+
         {...forwardingProps }
-      />
+      >
+        <Table.Column width="35%" sortable>
+          <Table.HeaderCell>Pair</Table.HeaderCell>
+          <Table.Cell dataKey="pair" />
+        </Table.Column>
+
+        <Table.Column width="65%" sortable>
+          <Table.HeaderCell>Last Price</Table.HeaderCell>
+          <Table.Cell dataKey="lastPrice" />
+        </Table.Column>
+      </Table>
     </section>
   );
 };
