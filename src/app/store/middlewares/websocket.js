@@ -1,21 +1,15 @@
-const websocketMiddleware = ({ onMessage, prefix = null}) => {
+const websocketMiddleware = ({ url, onMessage, prefix = null}) => {
   let websocket;
 
   return store => next => action => {
+    // Required to be able create many middlewares and separate them
     const actionPrefix = prefix ? `${prefix}/Websocket` : 'websocket';
 
     switch (action.type) {
       case `${actionPrefix}/Connect`:
-        websocket = new WebSocket(
-          `wss://stream.binance.com/stream?streams=!miniTicker@arr`
-        );
-
-        websocket.onopen = result => {
-          console.log('---> socket is opened with', result);
-        };
+        websocket = new WebSocket(url);
 
         websocket.onerror = result => {
-          console.log('---> socket is closed with', result);
           websocket.close();
         };
 
@@ -24,6 +18,10 @@ const websocketMiddleware = ({ onMessage, prefix = null}) => {
 
       case `${actionPrefix}/Disconnect`:
         websocket.close();
+        break;
+
+      // Empty rule for consistency
+      default:
         break;
     };
 

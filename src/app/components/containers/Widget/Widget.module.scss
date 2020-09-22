@@ -1,5 +1,6 @@
 .widget {
-  border: 1px solid #000;
+  border: 1px solid #cecece;
+  border-radius: 5px;
   padding: 10px 15px;
 
   max-width: 350px;
@@ -17,7 +18,4 @@
 
 .widget-markets {
   margin-bottom: 15px;
-}
-
-.widget-pair-list {
 }

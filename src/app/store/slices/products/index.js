@@ -4,7 +4,7 @@ import {
   updateProducts,
   loadingStart,
   loadingEnd,
-} from './slice';
+} from './productsSlice';
 
 import {
   fetchProducts,
@@ -19,4 +19,4 @@ export {
   fetchProducts,
 };
 
-export { default } from './slice';
+export { default } from './productsSlice';

@@ -1,6 +1,7 @@
+import { BINANCE_WS_ENDPOINT } from 'app/config';
 import middlewares from 'app/store/middlewares';
 
-import { updateProducts } from '../slice';
+import { updateProducts } from '../productsSlice';
 
 const onSocketMessage = dispatch => message => {
   if (!message.data) {
@@ -27,6 +28,7 @@ const onSocketMessage = dispatch => message => {
 // if it is possible. Instead, we can create so much websockets as we need,
 // with customizable action prefix and handler, and then register it in store.
 const productsWebsocketMiddleware = middlewares.websocket({
+  url: BINANCE_WS_ENDPOINT,
   prefix: 'products',
   onMessage: onSocketMessage,
 });

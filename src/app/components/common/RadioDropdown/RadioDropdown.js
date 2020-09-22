@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { Radio, Dropdown, IconButton, Icon } from 'rsuite';
 
@@ -7,66 +7,59 @@ const renderDropdownTitle = () => {
 };
 
 export default function RadioDropdown(props) {
-  const getCurrentOption = () => {
+  const currentOption = (() => {
     const index = props.items.findIndex(
       item => item.value === props.value
     );
 
     return props.items[index] || {};
-  };
+  })();
 
-  const getLabel = () => {
+  const getLabel = useCallback(() => {
     if (props.value === props.defaultValue) {
       return props.children;
     }
 
-    const { text } = getCurrentOption();
+    const { text } = currentOption;
 
     return text || props.children;
-  };
+  }, [props.value, props.defaultValue, props.children, currentOption]);
 
-  const getValue = () => {
+  const getValue = useCallback(() => {
     if (props.value === props.defaultValue) {
       return props.defaultValue;
     }
 
-    const { value } = getCurrentOption();
+    const { value } = currentOption;
 
     return value || props.items[0].value;
-  };
+  }, [props.value, props.defaultValue, props.items, currentOption]);
 
   const [label, setLabel] = useState(getLabel());
   const [value, setValue] = useState(getValue());
 
-  const onChange = newValue => {
-    if (!props.onChange) {
-      return;
-    }
-
-    props.onChange(newValue);
-  };
-
   useEffect(() => {
-    const newValue = getValue();
-
-    if (value !== newValue) {
+    // We should update label and value of current state every tick,
+    // if they changed. This is required for be able to click and select
+    // filter states from dropdown and by radio as well.
+    // if (value !== newValue) {
       setLabel(getLabel());
-      setValue(newValue);
-    }
-  });
+      setValue(getValue());
+    // }
+  }, [getLabel, getValue]);
 
   return (
     <React.Fragment>
       <Radio
         value={ value }
-        onChange={ onChange }
+        onChange={ props.onChange }
       >
         { label }
       </Radio>
 
       <Dropdown
         renderTitle={ renderDropdownTitle }
-        onSelect={ onChange }
+        onSelect={ props.onChange }
       >
         {(() => props.items.map(
           item =>

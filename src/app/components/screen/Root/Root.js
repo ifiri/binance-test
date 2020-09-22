@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Widget from 'app/components/common/Widget';
+import Widget from 'app/components/containers/Widget';
 import styles from './Root.module.scss';
 
 function Root() {
   return (
     <div className={ styles.root }>
-      <Widget className={ styles['root-widget'] }></Widget>
+      <Widget className={ styles['root-widget'] } />
     </div>
   );
 }

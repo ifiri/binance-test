@@ -54,16 +54,14 @@ export default function Widget(props) {
         className={ styles['widget-markets'] }
       />
 
-      <div >
-        <WidgetPairsTable
-          data={ products }
-          className={ styles['widget-pair-list'] }
-          loading={ isLoading }
-          virtualized= { true }
-          shouldUpdateScroll={ false }
-          onSearch={ onSearch }
-        />
-      </div>
+      <WidgetPairsTable
+        data={ products }
+        className={ styles['widget-pair-list'] }
+        loading={ isLoading }
+        virtualized= { true }
+        shouldUpdateScroll={ false }
+        onSearch={ onSearch }
+      />
     </section>
   );
 };

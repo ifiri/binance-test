@@ -1,18 +1,18 @@
 import axios from 'axios';
 
+import { BINANCE_REST_API_ENDPOINT } from 'app/config';
 import { 
   loadingStart,
   loadingEnd,
   setProducts,
-} from './slice';
-
-import { openSocketDispatchable } from './dispatchables';
+} from '../productsSlice';
+import { openSocketDispatchable } from '../dispatchables';
 
 export const fetchProducts = () => async dispatch => {
   try {
     dispatch(loadingStart());
 
-    const response = await axios.get('https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products');
+    const response = await axios.get(BINANCE_REST_API_ENDPOINT);
 
     const { data } = response;
 

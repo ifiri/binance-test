@@ -18,8 +18,6 @@ export default function Switcher(props) {
       return;
     }
 
-    console.log('::: switech', value);
-
     props.onSwitch(value);
   };
 
@@ -27,7 +25,6 @@ export default function Switcher(props) {
     if (item.descendants) {
       return <RadioDropdown
         key={ item.key || item.value }
-        className={ styles['switcher-button'] }
         onChange={ onChange }
         items={ item.descendants }
         value={ props.value }
@@ -39,7 +36,6 @@ export default function Switcher(props) {
 
     return <Radio
       key={ item.key || item.value }
-      className={ styles['switcher-button'] }
       value={ item.value }
       onChange={ onChange }
     >
