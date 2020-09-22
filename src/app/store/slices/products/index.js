@@ -1,7 +1,9 @@
 import {
   setProducts,
   setFilter,
+  setSearch,
   updateProducts,
+  sort,
   loadingStart,
   loadingEnd,
 } from './productsSlice';
@@ -13,7 +15,9 @@ import {
 export {
   setProducts,
   setFilter,
+  setSearch,
   updateProducts,
+  sort,
   loadingStart,
   loadingEnd,
   fetchProducts,

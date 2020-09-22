@@ -7,6 +7,7 @@ import {
   setProducts,
 } from '../productsSlice';
 import { openSocketDispatchable } from '../dispatchables';
+import { productsAdapter } from '../adapters';
 
 export const fetchProducts = () => async dispatch => {
   try {
@@ -14,18 +15,12 @@ export const fetchProducts = () => async dispatch => {
 
     const response = await axios.get(BINANCE_REST_API_ENDPOINT);
 
-    const { data } = response;
+    const result = response.data;
 
-    if (data && data.success) {
+    if (result && result.success) {
 
       // TODO 1
-      const adoptedProducts = data.data.reduce((accumulator, product) => ({
-        ...accumulator,
-        [product.s]: {
-          'pair': `${product.b}/${product.q}`,
-          'lastPrice': product.c,
-        }
-      }), {});
+      const adoptedProducts = productsAdapter(result.data);
 
       dispatch(setProducts(adoptedProducts));
       dispatch(openSocketDispatchable());

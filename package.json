@@ -1,15 +1,26 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "@ifiri/binance-rsuite-market-widget",
+  "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "test:e2e:run": "cypress run",
+    "test:e2e:open:run": "cypress open",
+    "test:e2e:start": "cross-env BROWSER=none start-server-and-test start http://localhost:3000",
+    "test:e2e:open": "yarn run test:e2e:start test:e2e:open:run",
+    "test:e2e": "yarn run test:e2e:start test:e2e:run"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
-    "bootstrap": "^4.5.2",
     "classnames": "^2.2.6",
+    "cypress": "^5.2.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -17,11 +28,10 @@
     "react-scripts": "3.4.3",
     "rsuite": "^4.8.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "cypress-react-selector": "^2.0.3",
+    "start-server-and-test": "^1.11.4"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,5 +47,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "env": {
+    "cypress-react-selector": {
+      "root": "#root"
+    }
   }
 }

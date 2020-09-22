@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 import { Radio, Dropdown, IconButton, Icon } from 'rsuite';
 
+import styles from './RadioDropdown.module.scss';
+
 const renderDropdownTitle = () => {
   return <IconButton icon={<Icon icon='angle-double-down' />} />;
 };
@@ -23,7 +25,7 @@ export default function RadioDropdown(props) {
     const { text } = currentOption;
 
     return text || props.children;
-  }, [props.value, props.defaultValue, props.children, currentOption]);
+  }, [props.value, props.defaultValue]);
 
   const getValue = useCallback(() => {
     if (props.value === props.defaultValue) {
@@ -33,7 +35,7 @@ export default function RadioDropdown(props) {
     const { value } = currentOption;
 
     return value || props.items[0].value;
-  }, [props.value, props.defaultValue, props.items, currentOption]);
+  }, [props.value, props.defaultValue]);
 
   const [label, setLabel] = useState(getLabel());
   const [value, setValue] = useState(getValue());
@@ -42,14 +44,12 @@ export default function RadioDropdown(props) {
     // We should update label and value of current state every tick,
     // if they changed. This is required for be able to click and select
     // filter states from dropdown and by radio as well.
-    // if (value !== newValue) {
-      setLabel(getLabel());
-      setValue(getValue());
-    // }
+    setLabel(getLabel());
+    setValue(getValue());
   }, [getLabel, getValue]);
 
   return (
-    <React.Fragment>
+    <div className={ styles['radio-dropdown'] }>
       <Radio
         value={ value }
         onChange={ props.onChange }
@@ -71,6 +71,6 @@ export default function RadioDropdown(props) {
             </Dropdown.Item>
         ))()}
       </Dropdown>
-    </React.Fragment>
+    </div>
   );
 };

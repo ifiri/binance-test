@@ -4,6 +4,8 @@ export const {
   setProductsCreator,
   updateProductsCreator,
   setFilterCreator,
+  setSearchCreator,
+  sortCreator,
   loadingStartCreator,
   loadingEndCreator,
 } = actionCreators;

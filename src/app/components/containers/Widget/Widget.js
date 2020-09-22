@@ -4,7 +4,8 @@ import classnames from 'classnames';
 
 import {
   fetchProducts,
-  setFilter,
+  setSearch,
+  sort,
 } from 'app/store/slices/products';
 
 import {
@@ -14,6 +15,7 @@ import {
 } from 'app/store/slices/products/selectors';
 
 import WidgetPairsSwitcher from './modules/WidgetPairsSwitcher';
+import WidgetSocketControls from './modules/WidgetSocketControls';
 import WidgetPairsTable from './modules/WidgetPairsTable';
 
 import styles from './Widget.module.scss';
@@ -31,7 +33,14 @@ export default function Widget(props) {
   const isLoading = useSelector(selectLoadingState);
 
   const onSearch = searchString => {
-    dispatch(setFilter(searchString));
+    dispatch(setSearch(searchString));
+  };
+
+  const onSort = (dataKey, sortType) => {
+    dispatch(sort({
+      column: dataKey,
+      type: sortType,
+    }));
   };
 
   useEffect(() => {
@@ -50,17 +59,18 @@ export default function Widget(props) {
         </h3>
       </header>
 
-      <WidgetPairsSwitcher
-        className={ styles['widget-markets'] }
-      />
+      <div className={ styles['widget-controls'] }>
+        <WidgetPairsSwitcher />
+        <WidgetSocketControls />
+      </div>
 
       <WidgetPairsTable
         data={ products }
-        className={ styles['widget-pair-list'] }
         loading={ isLoading }
         virtualized= { true }
         shouldUpdateScroll={ false }
         onSearch={ onSearch }
+        onSort={ onSort }
       />
     </section>
   );

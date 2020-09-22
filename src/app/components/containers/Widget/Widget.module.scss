@@ -16,6 +16,9 @@
   font-size: 26px;
 }
 
-.widget-markets {
+.widget-controls {
+  display: flex;
+  justify-content: space-between;
+  
   margin-bottom: 15px;
 }

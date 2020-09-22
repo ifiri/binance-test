@@ -2,10 +2,11 @@ import * as selectors from './selectors';
 
 export const {
   selectFilter,
-  selectSearchResults,
+  selectSearch,
   selectLoadingState,
   selectProductsExistence,
   selectProducts,
+  selectSort,
 } = selectors;
 
 export default selectors;

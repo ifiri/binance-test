@@ -1,6 +1,7 @@
 import { BINANCE_WS_ENDPOINT } from 'app/config';
 import middlewares from 'app/store/middlewares';
 
+import { productsAdapter } from '../adapters';
 import { updateProducts } from '../productsSlice';
 
 const onSocketMessage = dispatch => message => {
@@ -11,13 +12,7 @@ const onSocketMessage = dispatch => message => {
   const result = JSON.parse(message.data);
 
   if (result.data) {
-    // TODO 1
-    const adoptedProducts = result.data.reduce((accumulator, product) => ({
-      ...accumulator,
-      [product.s]: {
-        'lastPrice': product.c,
-      }
-    }), {});
+    const adoptedProducts = productsAdapter(result.data);
 
     dispatch(updateProducts(adoptedProducts));
   }

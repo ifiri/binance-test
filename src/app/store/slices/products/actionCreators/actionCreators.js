@@ -16,8 +16,19 @@ export const updateProductsCreator = (state, action) => {
   }
 };
 
+export const sortCreator = (state, action) => {
+  state.sort = {
+    column: action.payload.column,
+    type: action.payload.type,
+  };
+};
+
 export const setFilterCreator = (state, action) => {
-  state.search.filter = action.payload;
+  state.filter = action.payload;
+};
+
+export const setSearchCreator = (state, action) => {
+  state.search = action.payload;
 };
 
 export const loadingStartCreator = state => {

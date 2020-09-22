@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
 import Root from './app/components/screen/Root';
 
 import store from './app/store';
-import { Provider } from 'react-redux';
 
 import './assets/scss/index.scss';
 
