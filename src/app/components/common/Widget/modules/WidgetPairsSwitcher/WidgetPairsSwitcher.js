@@ -3,21 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import classnames from 'classnames';
 
 import {
-  changePair,
-  selectPair,
-} from 'app/store/slices/connect';
+  setFilter,
+} from 'app/store/slices/products';
+import {
+  selectFilter,
+} from 'app/store/slices/products/selectors';
 
 import Switcher from 'app/components/common/Switcher';
 
+import { AVAILABLE_MODES } from './WidgetPairsSwitcher.constants';
 import styles from './WidgetPairsSwitcher.module.scss';
-
-const AVAILABLE_MODES = [
-  { text: 'Margin', value: 'margin' },
-  { text: 'BNB', value: 'bnb' },
-  { text: 'BTC', value: 'btc' },
-  { text: 'ALTS', value: 'alts' },
-  { text: 'USD(s)', value: 'usds' },
-];
 
 export default function WidgetPairsSwitcher(props) {
   const { className: passedClassName, ...forwardingProps } = props;
@@ -28,10 +23,12 @@ export default function WidgetPairsSwitcher(props) {
     [styles['widget-pairs-switcher']]: true,
   });
 
-  const currentPair = useSelector(selectPair);
+  const currentPair = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const onSwitch = pair => dispatch(changePair(pair));
+  const onSwitch = pair => {
+    dispatch(setFilter(pair));
+  };
 
   return <Switcher
     className={ className }

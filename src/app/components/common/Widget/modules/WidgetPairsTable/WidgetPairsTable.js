@@ -1,12 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import { Table } from 'rsuite';
+import { Table, Input } from 'rsuite';
 
 import styles from './WidgetPairsTable.module.scss';
 
 export default function WidgetPairsTable(props) {
-  const { className: passedClassName, ...forwardingProps } = props;
+  const { onSearch = () => {}, className: passedClassName, ...forwardingProps } = props;
 
   const className = classnames({
     [passedClassName]: !!passedClassName,
@@ -18,7 +18,7 @@ export default function WidgetPairsTable(props) {
     <section className={ className }>
       <div className={ styles['widget-pairs-table-filters'] }>
         <div className={ styles['widget-pairs-table-search'] }>
-          <input type="text" placeholder="search" />
+          <Input type="text" placeholder="search" onChange={ onSearch } />
         </div>
       </div>
 
@@ -31,12 +31,12 @@ export default function WidgetPairsTable(props) {
 
         {...forwardingProps }
       >
-        <Table.Column width="35%" sortable>
+        <Table.Column width={ 150 } fixed sortable>
           <Table.HeaderCell>Pair</Table.HeaderCell>
           <Table.Cell dataKey="pair" />
         </Table.Column>
 
-        <Table.Column width="65%" sortable>
+        <Table.Column sortable>
           <Table.HeaderCell>Last Price</Table.HeaderCell>
           <Table.Cell dataKey="lastPrice" />
         </Table.Column>

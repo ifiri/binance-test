@@ -1,6 +1,6 @@
 import { configureStore  } from '@reduxjs/toolkit';
 import slices from './slices';
-import { productsWebsocketMiddleware } from './slices/products';
+import productsWebsocketMiddleware from './slices/products/middlewares';
 
 const middlewares = [
   productsWebsocketMiddleware,
@@ -8,8 +8,8 @@ const middlewares = [
 
 export default configureStore({
   reducer: {
-    connect: slices.connect,
     products: slices.products,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(productsWebsocketMiddleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middlewares),
 });

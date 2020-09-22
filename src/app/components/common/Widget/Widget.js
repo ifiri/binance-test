@@ -4,10 +4,14 @@ import classnames from 'classnames';
 
 import {
   fetchProducts,
+  setFilter,
+} from 'app/store/slices/products';
+
+import {
   selectProducts,
   selectProductsExistence,
   selectLoadingState,
-} from 'app/store/slices/products';
+} from 'app/store/slices/products/selectors';
 
 import WidgetPairsSwitcher from './modules/WidgetPairsSwitcher';
 import WidgetPairsTable from './modules/WidgetPairsTable';
@@ -25,6 +29,10 @@ export default function Widget(props) {
   const products = useSelector(selectProducts);
   const areProductsExists = useSelector(selectProductsExistence);
   const isLoading = useSelector(selectLoadingState);
+
+  const onSearch = searchString => {
+    dispatch(setFilter(searchString));
+  };
 
   useEffect(() => {
     if (areProductsExists || isLoading) {
@@ -52,7 +60,8 @@ export default function Widget(props) {
           className={ styles['widget-pair-list'] }
           loading={ isLoading }
           virtualized= { true }
-          shouldUpdateScroll= { false }
+          shouldUpdateScroll={ false }
+          onSearch={ onSearch }
         />
       </div>
     </section>
