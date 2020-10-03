@@ -1,6 +1,6 @@
 import { numberToString } from 'app/utils';
 
-const productsAdapter = rawProducts => {
+export const productsAdapter = rawProducts => {
   return rawProducts.reduce((accumulator, product) => ({
     ...accumulator,
     [product.s]: {
@@ -9,5 +9,3 @@ const productsAdapter = rawProducts => {
     },
   }), {});
 };
-
-export default productsAdapter;

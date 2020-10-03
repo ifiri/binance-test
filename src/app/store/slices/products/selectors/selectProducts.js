@@ -1,15 +1,10 @@
 import { FILTERS_MAP } from 'app/constants';
 
-export const selectSort = state => state.products.sort;
-export const selectFilter = state => state.products.filter;
-export const selectSearch = state => state.products.search;
-export const selectLoadingState = state => state.products.isLoading;
+import { selectFilter } from 'app/store/slices/filter/selectors';
+import { selectSearch } from 'app/store/slices/search/selectors';
+import { selectSort } from 'app/store/slices/sort/selectors';
 
-export const selectProductsExistence = state => {
-  const { products } = state;
-
-  return products.data && Object.keys(products.data).length;
-};
+import { selectProductsExistence } from './selectProductsExistence';
 
 export const selectProducts = state => {
   const { products } = state;

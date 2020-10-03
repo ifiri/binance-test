@@ -1,13 +1,2 @@
-import * as actionCreators from './actionCreators';
-
-export const {
-  setProductsCreator,
-  updateProductsCreator,
-  setFilterCreator,
-  setSearchCreator,
-  sortCreator,
-  loadingStartCreator,
-  loadingEndCreator,
-} = actionCreators;
-
-export default actionCreators;
+export { setProductsCreator } from './setProductsCreator';
+export { updateProductsCreator } from './updateProductsCreator';

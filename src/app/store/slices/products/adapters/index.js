@@ -1,5 +1,1 @@
-import productsAdapter from './productsAdapter';
-
-export {
-  productsAdapter,
-};
+export { productsAdapter } from './productsAdapter';

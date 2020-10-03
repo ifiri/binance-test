@@ -4,15 +4,24 @@ import classnames from 'classnames';
 
 import {
   fetchProducts,
-  setSearch,
-  sort,
 } from 'app/store/slices/products';
+
+import {
+  sort,
+} from 'app/store/slices/sort';
+
+import {
+  setSearch,
+} from 'app/store/slices/search';
 
 import {
   selectProducts,
   selectProductsExistence,
-  selectLoadingState,
 } from 'app/store/slices/products/selectors';
+
+import {
+  selectLoadingState,
+} from 'app/store/slices/loading/selectors';
 
 import WidgetPairsSwitcher from './modules/WidgetPairsSwitcher';
 import WidgetSocketControls from './modules/WidgetSocketControls';

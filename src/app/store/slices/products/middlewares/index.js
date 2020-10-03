@@ -1,1 +1,1 @@
-export { default } from './websocket';
+export { productsWebsocketMiddleware } from './productsWebsocketMiddleware';

@@ -1,26 +1,6 @@
-import {
-  setProducts,
-  setFilter,
-  setSearch,
-  updateProducts,
-  sort,
-  loadingStart,
-  loadingEnd,
-} from './productsSlice';
+export { fetchProducts } from './thunks';
 
-import {
-  fetchProducts,
-} from './actions';
+export { setProducts } from './slice';
+export { updateProducts } from './slice';
 
-export {
-  setProducts,
-  setFilter,
-  setSearch,
-  updateProducts,
-  sort,
-  loadingStart,
-  loadingEnd,
-  fetchProducts,
-};
-
-export { default } from './productsSlice';
+export { default } from './slice';

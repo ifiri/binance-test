@@ -6,16 +6,17 @@ import { Table, Input } from 'rsuite';
 
 import {
   selectSort,
-} from 'app/store/slices/products/selectors';
+} from 'app/store/slices/sort/selectors';
 
 import styles from './WidgetPairsTable.module.scss';
 
 export default function WidgetPairsTable(props) {
   const {
-    onSearch = () => {},
-    onSort = () => {},
+    onSearch,
+    onSort,
 
     className: passedClassName,
+
     ...forwardingProps
   } = props;
 

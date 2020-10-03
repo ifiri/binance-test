@@ -4,10 +4,10 @@ import classnames from 'classnames';
 
 import {
   setFilter,
-} from 'app/store/slices/products';
+} from 'app/store/slices/filter';
 import {
   selectFilter,
-} from 'app/store/slices/products/selectors';
+} from 'app/store/slices/filter/selectors';
 
 import Switcher from 'app/components/common/Switcher';
 

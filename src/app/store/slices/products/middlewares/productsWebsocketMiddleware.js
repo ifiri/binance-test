@@ -2,7 +2,7 @@ import { BINANCE_WS_ENDPOINT } from 'app/config';
 import middlewares from 'app/store/middlewares';
 
 import { productsAdapter } from '../adapters';
-import { updateProducts } from '../productsSlice';
+import { updateProducts } from '../slice';
 
 const onSocketMessage = dispatch => message => {
   if (!message.data) {
@@ -22,10 +22,8 @@ const onSocketMessage = dispatch => message => {
 // multiple websockets inside, so I can't use one global middleware, even
 // if it is possible. Instead, we can create so much websockets as we need,
 // with customizable action prefix and handler, and then register it in store.
-const productsWebsocketMiddleware = middlewares.websocket({
+export const productsWebsocketMiddleware = middlewares.websocket({
   url: BINANCE_WS_ENDPOINT,
   prefix: 'products',
   onMessage: onSocketMessage,
 });
-
-export default productsWebsocketMiddleware;

@@ -1,11 +1,15 @@
 import axios from 'axios';
-
 import { BINANCE_REST_API_ENDPOINT } from 'app/config';
+
 import { 
+  setProducts,
+} from '../slice';
+
+import {
   loadingStart,
   loadingEnd,
-  setProducts,
-} from '../productsSlice';
+} from 'app/store/slices/loading';
+
 import { openSocketDispatchable } from '../dispatchables';
 import { productsAdapter } from '../adapters';
 
@@ -18,8 +22,6 @@ export const fetchProducts = () => async dispatch => {
     const result = response.data;
 
     if (result && result.success) {
-
-      // TODO 1
       const adoptedProducts = productsAdapter(result.data);
 
       dispatch(setProducts(adoptedProducts));
@@ -28,8 +30,6 @@ export const fetchProducts = () => async dispatch => {
     }
     
     dispatch(setProducts([]));
-  } catch(err) {
-    throw err;
   } finally {
     dispatch(loadingEnd());
   }

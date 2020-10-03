@@ -1,0 +1,1 @@
+export { selectSearch } from './selectSearch';
